@@ -1,16 +1,18 @@
+require('rmr2')
+
 Sys.setenv(HADOOP_STREAMING="/usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar")
 Sys.setenv(HADOOP_CMD="/usr/bin/hadoop")
 
-require('rmr2')
+
 rmr.options (
    backend.parameters = list (
-     hadoop = list (
-       D = "mapreduce.map.java.opts=-Xmx800M",
-       D = "mapreduce.reduce.java.opts=-Xmx800M",
-       D = "mapreduce.map.memory.mb=2048",
-       D = "mapreduce.reduce.memory.mb=2048",
-       D = "mapreduce.task.io.sort.mb=64"
-     )
+        hadoop = list (
+            D = "mapreduce.map.java.opts=-Xmx800M",
+            D = "mapreduce.reduce.java.opts=-Xmx800M",
+            D = "mapreduce.map.memory.mb=2048",
+            D = "mapreduce.reduce.memory.mb=2048",
+            D = "mapreduce.task.io.sort.mb=64"
+        )
    )
 )
 

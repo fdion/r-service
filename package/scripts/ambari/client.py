@@ -1,20 +1,25 @@
-from resource_management import *
 import ambari_helpers as helpers
+from resource_management import ClientComponentHasNoStatus, Execute, Script
+
 
 class Client(Script):
-  def install(self, env):
-    # Install repos & packages listed in metainfo.xml
-    helpers.add_repos()
-    self.configure(env)
+    def install(self, env):
+        """Install repos & packages listed in metainfo.xml."""
+        helpers.add_repos()
+        self.configure(env)
 
-  def configure(self, env):
-    import params
-    env.set_params(params)
+    def configure(self, env):
+        import params
 
-    self.install_packages(env)
-    for command in params.commands: Execute(command)
+        env.set_params(params)
 
-  def status(self, env): raise ClientComponentHasNoStatus()
+        self.install_packages(env)
+        for command in params.commands:
+            Execute(command)
+
+    def status(self, env):
+        raise ClientComponentHasNoStatus()
+
 
 if __name__ == "__main__":
-  Client().execute()
+    Client().execute()
