@@ -26,8 +26,12 @@ Sys.setenv(HADOOP_CMD="/usr/bin/hadoop")
 
 There are two models for working with R in Hadoop environments:
 
-1. Local - use rhdfs for reading files from HDFS and working with on a local (typically high-memory node)
+1. Local - use rhdfs for reading whole files from HDFS and working with on a local (typically high-memory node). 
+Or use RHive to subset after connecting with:
+```
+rhive.connect(host, port, hiveServer2)
+```
 
-2. Cluster - use rplyr, or rmr2 to launch jobs that run on all cluster nodes. In this model, R needs to be installed on all YARN managed nodes. To install, check the 'Client' box for all nodes which have NodeManager installed.
+2. Cluster - use plyrmr, or rmr2 to launch jobs that run on all cluster nodes. In this model, R needs to be installed on all YARN managed nodes. To install, check the 'Client' box for all nodes which have NodeManager installed.
 
 A 'remove.sh' script is provided in the project root for convenience. It'll remove the service package from Ambari's resources dir. Please edit remove.sh to set your Ambari login and cluster name details.
