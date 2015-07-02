@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-yum remove -y R-core
+yum remove -y R R-core
 rm -rf /var/lib/ambari-server/resources/stacks/HDP/2.2/services/r-service
 
 # Argument is cluster name
